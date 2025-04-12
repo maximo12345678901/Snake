@@ -128,6 +128,5 @@ while True:
     Rendering()
     time.sleep(ITERATION_DURATION)
     if game_over == True:
-        time.sleep(2) # Give the played time to realise that they are a failure
         break
 
