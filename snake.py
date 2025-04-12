@@ -28,7 +28,6 @@ direction = [0, -1] # The player starts facing up
 
 ITERATION_DURATION = 0.15 # The time in between movement steps
 grow_buffer = 0
-timer = 0
 
 # A function that keeps generating a random position within the playing field, and returns it when it's unoccupied
 def spawn_food():
