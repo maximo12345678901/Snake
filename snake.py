@@ -4,8 +4,8 @@ import keyboard # type: ignore
 import os
 
 # Ask the user for the map size
-xMapSize = int(input("x: "))
-yMapSize = int(input("y: "))
+x_map_size = int(input("x: "))
+y_map_size = int(input("y: "))
 
 # Give the user a bit of time before the game begins
 time.sleep(1)
@@ -18,10 +18,10 @@ gold = "\033[33m"
 
 # Initialize the first four segments of the snake before the game loop begins
 segments = [
-    [xMapSize // 2, yMapSize // 2],
-    [xMapSize // 2, yMapSize // 2 + 1],
-    [xMapSize // 2, yMapSize // 2 + 2],
-    [xMapSize // 2, yMapSize // 2 + 3]
+    [x_map_size // 2, y_map_size // 2],
+    [x_map_size // 2, y_map_size // 2 + 1],
+    [x_map_size // 2, y_map_size // 2 + 2],
+    [x_map_size // 2, y_map_size // 2 + 3]
 ]
 
 direction = [0, -1] # The player starts facing up
@@ -33,7 +33,7 @@ timer = 0
 # A function that keeps generating a random position within the playing field, and returns it when it's unoccupied
 def spawn_food():
     while True:
-        pos = [random.randint(0, xMapSize - 1), random.randint(0, yMapSize - 1)]
+        pos = [random.randint(0, x_map_size - 1), random.randint(0, y_map_size - 1)]
         if pos not in segments:
             return pos
 
@@ -62,10 +62,10 @@ def Input():
 # The list will later be turned into a string which will be printed on the screen
 def Rendering():
     print("Snake")
-    print(" "+"__" * xMapSize) # Draw the upper border of the playing field
-    for y in range(yMapSize):
+    print(" "+"__" * x_map_size) # Draw the upper border of the playing field
+    for y in range(y_map_size):
         row = ["|"] # Draw the left border of the playing field
-        for x in range(xMapSize):
+        for x in range(x_map_size):
             if [x, y] == segments[0]:
                 row.append(green + "()" + reset_color) # The head of the snake is "()"
             elif [x, y] in segments:
@@ -78,7 +78,7 @@ def Rendering():
                 row.append("  ") # If there is no game object current [x, y] of the loop, just print spaces
         row.append("|") # Draw the right border of the playing field
         print("".join(row)) # Turn the list into a printable string
-    print(" "+"--" * xMapSize) # Draw the bottom border of the playing field
+    print(" "+"--" * x_map_size) # Draw the bottom border of the playing field
     print("Score: " + str(score))
 
 while True:
@@ -86,7 +86,7 @@ while True:
     Input()
     new_head = [segments[0][0] + direction[0], segments[0][1] + direction[1]] # The position of the new head will be the old head + the direction
 
-    if new_head in segments or new_head[0] < 0 or new_head[0] >= xMapSize or new_head[1] < 0 or new_head[1] >= yMapSize:
+    if new_head in segments or new_head[0] < 0 or new_head[0] >= x_map_size or new_head[1] < 0 or new_head[1] >= y_map_size:
         game_over = True # If the position of the new head overlaps the borders or the snake itself, game over
 
     segments.insert(0, new_head) # Add the seperate new head position to the list of all snake segments (specifically at the beginning of the list)
@@ -122,7 +122,7 @@ while True:
     # If the golden apple isn't hidden, it moves in a random direction
     if gold_apple != [-1, -1]:
         new_gold_apple_pos = [gold_apple[0] + gold_apple_direction[0], gold_apple[1] + gold_apple_direction[1]]
-        if new_gold_apple_pos not in segments and new_gold_apple_pos[0] >= 0 and new_gold_apple_pos[0] < xMapSize and new_gold_apple_pos[1] >= 0 and new_gold_apple_pos[1] < yMapSize:
+        if new_gold_apple_pos not in segments and new_gold_apple_pos[0] >= 0 and new_gold_apple_pos[0] < x_map_size and new_gold_apple_pos[1] >= 0 and new_gold_apple_pos[1] < y_map_size:
             gold_apple = new_gold_apple_pos
 
     Rendering()
