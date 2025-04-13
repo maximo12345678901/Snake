@@ -1,8 +1,6 @@
 # Snake
 
-I built snake for the command line in python. I built this because I wanted to learn more about python, and because it was fun to do. 
-
-I chose to build snake, because I had already built it before in C#, therefore I knew where to start.
+I built snake for the command line in python.
 
 ## Usage
 
