@@ -66,23 +66,23 @@ def Input():
 # The list will later be turned into a string which will be printed on the screen
 def Rendering():
     print("Snake")
-    print(" "+"__" * x_map_size) # Draw the upper border of the playing field
+    print("  "+"██" * x_map_size) # Draw the upper border of the playing field
     for y in range(y_map_size):
-        row = ["|"] # Draw the left border of the playing field
+        row = ["██"] # Draw the left border of the playing field
         for x in range(x_map_size):
             if [x, y] == segments[0]:
-                row.append(green + "()" + reset_color) # The head of the snake is "()"
+                row.append(green + "██" + reset_color) # The head of the snake is "()"
             elif [x, y] in segments:
-                row.append(green + "[]" + reset_color) # The rest of the snake is "[]"
+                row.append(green + "██" + reset_color) # The rest of the snake is "[]"
             elif [x, y] == apple:
-                row.append(red + "()" + reset_color) # Apples are also "()"
+                row.append(red + "██" + reset_color) # Apples are also "()"
             elif [x, y] == gold_apple:
-                row.append(gold + "()" + reset_color)
+                row.append(gold + "██" + reset_color)
             else:
                 row.append("  ") # If there is no game object current [x, y] of the loop, just print spaces
-        row.append("|") # Draw the right border of the playing field
+        row.append("██") # Draw the right border of the playing field
         print("".join(row)) # Turn the list into a printable string
-    print(" "+"--" * x_map_size) # Draw the bottom border of the playing field
+    print("  "+"██" * x_map_size) # Draw the bottom border of the playing field
     print("Score: " + str(score))
 
 while True:
