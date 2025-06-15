@@ -7,8 +7,10 @@ import os
 x_map_size = 20 #int(input("x: "))
 y_map_size = 20 #int(input("y: "))
 
-# Give the user a bit of time before the game begins
-time.sleep(.1)
+
+os.system("cls" or "clear") # Clear the screen before starting
+print("\033[?25l", end="") # Hide the cursor
+time.sleep(.1) # Give the user a bit of time before the game begins 
 
 # Initialize color codes
 reset_color = "\033[0m"
@@ -88,7 +90,7 @@ while True:
     Input()
     if (time.time() > time_to_pass):
         time_to_pass = time.time() + ITERATION_DURATION
-        os.system("cls" or "clear") # Clear the terminal screen before drawing 
+        print("\033[H", end="") # Clear the terminal screen before drawing 
         new_head = [segments[0][0] + direction[0], segments[0][1] + direction[1]] # The position of the new head will be the old head + the direction
 
         if new_head in segments or new_head[0] < 0 or new_head[0] >= x_map_size or new_head[1] < 0 or new_head[1] >= y_map_size:
@@ -132,5 +134,6 @@ while True:
 
         Rendering()
         if game_over == True:
+            print("\033[?25h", end="") # Show the cursor
             break
 
